@@ -9,10 +9,10 @@ The user is given a card, and they must guess whether the next card in the rando
 []High Scores
 []User guide
 []ASCII Cards
-┌─────────┐  ┌─────────┐  ┌─────────┐
-│A        │  │10       │  │K        │
-│         │  │         │  │         │
-│    ♠    │  │    ♥    │  │    ♦    │
-│         │  │         │  │         │
-│        A│  │       10│  │        K│
-└─────────┘  └─────────┘  └─────────┘
+┌─────────┐
+│A        │
+│         │
+│    ♠    │
+│         |
+│        A│
+└─────────┘
