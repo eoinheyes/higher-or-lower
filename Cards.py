@@ -39,10 +39,11 @@ def Row(deck):
     return random.sample(deck, rowLength)
 
 def singlePlayer():
+    #The user always starts with 0 points.
     points = 0
     game = Row(Deck())
+    #One game is equal to the number of cards -1 iteration.
     for i in range(len(game)-1):
-        higher = True
         if i == 0:
             print("Your first card is... the " + game[i][0] + " of "+ game[i][1] +".")
         answer = input("Is the next card higher (H) or Lower? (L)")
@@ -59,7 +60,6 @@ def singlePlayer():
         #If the consecutive card is lower
         elif game[i][2] > game[i+1][2]:
             print("The card is lower!")
-            higher = False
             if answer.upper() == "L":
                 points=points+1
                 print("You earn a point.")
