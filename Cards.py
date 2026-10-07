@@ -5,6 +5,7 @@ def splashScreen():
     menu()
 
 def menu():
+    #The user picks a number, corresponding to an option on the menu.
     print("---------------------------")
     print("1. Single Player")
     print("---------------------------")
@@ -71,10 +72,11 @@ def singlePlayer():
             print("It's a pair, you don't get anything for a pair, not in this game!")
             points=points-1
             print("You lose a point.")
+    #The user's final score is outputted here.
     print("Your final score is "+ str(points))
     menu()
 
-
+#The splashscreen is called, which sets the whole program in motion.
 splashScreen()
 
 
