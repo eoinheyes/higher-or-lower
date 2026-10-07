@@ -21,17 +21,17 @@ def menu():
         menu()
 
 
-#Sets up the deck of cards, utilising a loop to combine 2 arrays into one 3-dimensional array representing each card and its value
+#Sets up the deck of cards, utilising a loop to combine 3 arrays into one 2-dimensional array representing each card and its value
 def Deck():
     suits = ["Hearts","Diamonds","Spades","Clubs"]
     ranks = ["2","3","4","5","6","7","8","9","10","Jack","Queen","King","Ace"]
     values = [2,3,4,5,6,7,8,9,10,11,12,13,14]
-    array3d = []
+    array2d = []
     for s in suits:
         for i, r in enumerate(ranks):
             card = [r,s, values[i]]
-            array3d.append(card)
-    return array3d
+            array2d.append(card)
+    return array2d
 
 #Sets up the random cards selected in the game.
 def Row(deck):
@@ -47,6 +47,7 @@ def singlePlayer():
             print("Your first card is... the " + game[i][0] + " of "+ game[i][1] +".")
         answer = input("Is the next card higher (H) or Lower? (L)")
         print("Your next card is... the " + game[i+1][0] + " of "+ game[i+1][1] +".")
+        #If the consecutive card is higher
         if game[i][2] < game[i+1][2]:
             print("The card is higher!")
             if answer.upper() == "H":
@@ -55,6 +56,7 @@ def singlePlayer():
             else:
                 points=points-1
                 print("You lose a point")
+        #If the consecutive card is lower
         elif game[i][2] > game[i+1][2]:
             print("The card is lower!")
             higher = False
@@ -64,6 +66,7 @@ def singlePlayer():
             else:
                 points=points-1
                 print("You lose a point.")
+        #If the cards are of equal value
         elif game[i][2] == game[i+1][2]:
             print("It's a pair, you don't get anything for a pair, not in this game!")
             points=points-1
