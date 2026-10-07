@@ -1,4 +1,4 @@
-# Play Your Cards Right
+# Higher Or Lower
 
 An interactive card game, based on the classic game show "Play Your Cards Right".
 
