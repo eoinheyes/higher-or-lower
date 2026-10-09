@@ -1,7 +1,14 @@
 import random
+import Player
 
 def splashScreen():
     print("Welcome to Higher Or Lower!")
+    login()
+
+def login():
+    username = input("Enter your username: ")
+    player1 = Player.Player(username, 0)
+    print("Welcome "+ player1.username +"!")
     menu()
 
 def menu():
@@ -9,16 +16,20 @@ def menu():
     print("---------------------------")
     print("1. Single Player")
     print("---------------------------")
-    print("2. Endless Mode")
+    print("2. Multiplayer Mode")
     print("---------------------------")
-    print("3. Exit Game")
+    print("3. Endless Mode")
+    print("---------------------------")
+    print("4. Exit Game")
     print("---------------------------")
     option = input("Please enter your chosen option number: ")
     if option == "1":
         singlePlayer()
     elif option == "2":
-        endlessMode()
+        multiPlayer()
     elif option =="3":
+        endlessMode()
+    elif option =="4":
         print("Exiting game...")
     else:
         print("Invalid option. Please select one of the numbered options listed.")
@@ -79,10 +90,99 @@ def singlePlayer():
     menu()
 
 def multiPlayer():
-    player1game = Row(Deck(), 5)
-    player2game = Row(Deck(), 5)
-    p1points = 0
-    p2points = 0
+    game = Row(Deck(), 10)
+    #Splits the deck for the two players using array slicing
+    p1game = game[:len(game)//2]
+    p2game = game[len(game)//2:]
+    p1p = 0
+    p2p = 0
+    p1seq = 0
+    p2seq = 0
+    running = True
+
+    while running:
+        while p1seq < len(p1game):
+            print("Player 1's turn...")
+            print("")
+            if p1seq == 0:
+                print("Your first card is... the " + p1game[p1seq][0] + " of "+ p1game[p1seq][1] +".")
+            answer = input("Is the next card higher (H) or Lower? (L)")
+            print("Your next card is... the " + p1game[p1seq+1][0] + " of "+ p1game[p1seq+1][1] +".")
+
+            #If the consecutive card is higher
+            if p1game[p1seq][2] < p1game[p1seq+1][2]:
+                print("The card is higher!")
+                if answer.upper() == "H":
+                    p1p=p1p+1
+                    print("You earn a point")
+                else:
+                    p1p=p1p-1
+                    print("You lose a point")
+                    p1seq=p1seq+1
+                    break
+            
+            #If the consecutive card is lower
+            elif p1game[p1seq][2] > p1game[p1seq+1][2]:
+                print("The card is lower!")
+                if answer.upper() == "L":
+                    p1p=p1p+1
+                    print("You earn a point.")
+                else:
+                    p1p=p1p-1
+                    print("You lose a point.")
+                    p1seq=p1seq+1
+                    break
+            #If the cards are of equal value
+            elif p1game[p1seq][2] == p1game[p1seq+1][2]:
+                print("It's a pair, you don't get anything for a pair, not in this game!")
+                p1p=p1p-1
+                print("You lose a point.")
+            p1seq=p1seq+1
+
+        #Player 2 game
+        while p2seq < len(p2game):
+            print("Player 2's turn...")
+            print("")
+            if p2seq == 0:
+                print("Your first card is... the " + p2game[p2seq][0] + " of "+ p2game[p2seq][1] +".")
+            answer = input("Is the next card higher (H) or Lower? (L)")
+            print("Your next card is... the " + p1game[p2seq+1][0] + " of "+ p2game[p2seq+1][1] +".")
+
+            #If the consecutive card is higher
+            if p1game[p2seq][2] < game[p2seq+1][2]:
+                print("The card is higher!")
+                if answer.upper() == "H":
+                    p2p=p2p+1
+                    print("You earn a point")
+                else:
+                    p2p=p2p-1
+                    print("You lose a point")
+                    p2seq=p2seq+1
+                    break
+            
+            #If the consecutive card is lower
+            elif p2game[p2seq][2] > p2game[p2seq+1][2]:
+                print("The card is lower!")
+                if answer.upper() == "L":
+                    p2p=p2p+1
+                    print("You earn a point.")
+                else:
+                    p2p=p2p-1
+                    print("You lose a point.")
+                    p2seq=p2seq+1
+                    break
+            #If the cards are of equal value
+            elif p2game[p2seq][2] == p2game[p2seq+1][2]:
+                print("It's a pair, you don't get anything for a pair, not in this game!")
+                points=points-1
+                print("You lose a point.")
+            p2seq=p2seq+1
+
+    #The users' final scores are outputted here.
+    print("Player 1's final score is "+ str(p1p) +" points.")
+    print("Player 2's final score is "+ str(p2p) +" points.")
+    menu()
+
 
 def endlessMode():
     streak = True
