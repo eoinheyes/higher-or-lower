@@ -9,13 +9,6 @@ The user is given a card, and they must guess whether the next card in the rando
 ## Features
 - [ ] Single Player
 - [ ] Endless Mode
-<<<<<<< HEAD
-
-## Planned Features
-
-- [ ] Multiplayer mode
-- [ ] High Scores
-=======
 - [ ] High Scores
 - [ ] Leaderboard
 
@@ -25,7 +18,6 @@ The user is given a card, and they must guess whether the next card in the rando
 
 ## Planned Features
 
->>>>>>> aec5e55 (High Scores + Leaderboard, Updated README.md)
 - [ ] User guide
 - [ ] ASCII Cards
 
