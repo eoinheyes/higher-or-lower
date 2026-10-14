@@ -1,5 +1,6 @@
 import random
 import Player
+import csv
 
 def splashScreen():
     print("Welcome to Higher Or Lower!")
@@ -20,7 +21,9 @@ def menu():
     print("---------------------------")
     print("3. Endless Mode")
     print("---------------------------")
-    print("4. Exit Game")
+    print("4. Leaderboard")
+    print("---------------------------")
+    print("5. Exit Game")
     print("---------------------------")
     option = input("Please enter your chosen option number: ")
     if option == "1":
@@ -30,6 +33,8 @@ def menu():
     elif option =="3":
         endlessMode()
     elif option =="4":
+        leaderBoard()
+    elif option =="5":
         print("Exiting game...")
     else:
         print("Invalid option. Please select one of the numbered options listed.")
@@ -87,6 +92,10 @@ def singlePlayer():
             print("You lose a point.")
     #The user's final score is outputted here.
     print("Your final score is "+ str(points))
+    if player1.score < points:
+        print("Well Done! That is a new high score!")
+        player1.highScore(points)
+
     menu()
 
 def multiPlayer():
@@ -181,6 +190,12 @@ def multiPlayer():
     #The users' final scores are outputted here.
     print("Player 1's final score is "+ str(p1p) +" points.")
     print("Player 2's final score is "+ str(p2p) +" points.")
+    if player1.score < p1p:
+        print("Well Done Player 1! That is a new high score!")
+        player1.highScore(p1p)
+    if player2.score < p2p:
+        print("Well Done Player 2! That is a new high score!")
+        player1.highScore(p2p)
     menu()
 
 
@@ -222,8 +237,22 @@ def endlessMode():
                 break
     #The user's final score is outputted here.
     print("Your final score is "+ str(points))
+    if player1.score < points:
+        print("Well Done! That is a new high score!")
+        player1.highScore(points)
     menu()        
 
+def leaderBoard():
+    #Headers for the leaderboard table
+    headers = ["Username","High Score"]
+    with open("scores.csv","r",newline="") as file:
+            reader = csv.reader(file)
+            scores = list(reader)
+            #Formatting has been built into the table's design, which is outputted onto the terminal.
+            print(f"{headers[0]:<12} {headers[1]:<6}")
+            print("-" * 35)
+            for row in scores:
+                print(f"{row[0]:<12} {row[1]:<6}")
 
 #The splashscreen is called, which sets the whole program in motion.
 splashScreen()
