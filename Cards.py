@@ -1,6 +1,7 @@
 import random
 import Player
 import csv
+ascii_on = True
 
 def splashScreen():
     print("Welcome to Higher Or Lower!")
@@ -9,6 +10,7 @@ def splashScreen():
 def login():
     username = input("Enter your username: ")
     player1 = Player.Player(username, 0)
+    global player1
     print("Welcome "+ player1.username +"!")
     menu()
 
@@ -65,8 +67,12 @@ def singlePlayer():
     for i in range(len(game)-1):
         if i == 0:
             print("Your first card is... the " + game[i][0] + " of "+ game[i][1] +".")
+            if ascii_on:
+                    print(asciiCard(game[i]))
         answer = input("Is the next card higher (H) or Lower? (L)")
         print("Your next card is... the " + game[i+1][0] + " of "+ game[i+1][1] +".")
+        if ascii_on:
+                print(asciiCard(game[i+1]))
         #If the consecutive card is higher
         if game[i][2] < game[i+1][2]:
             print("The card is higher!")
@@ -115,8 +121,12 @@ def multiPlayer():
             print("")
             if p1seq == 0:
                 print("Your first card is... the " + p1game[p1seq][0] + " of "+ p1game[p1seq][1] +".")
+                if ascii_on:
+                    print(asciiCard(p1game[i]))
             answer = input("Is the next card higher (H) or Lower? (L)")
             print("Your next card is... the " + p1game[p1seq+1][0] + " of "+ p1game[p1seq+1][1] +".")
+            if ascii_on:
+                print(asciiCard(p1game[i+1]))
 
             #If the consecutive card is higher
             if p1game[p1seq][2] < p1game[p1seq+1][2]:
@@ -154,8 +164,12 @@ def multiPlayer():
             print("")
             if p2seq == 0:
                 print("Your first card is... the " + p2game[p2seq][0] + " of "+ p2game[p2seq][1] +".")
+                if ascii_on:
+                    print(asciiCard(p2game[i]))
             answer = input("Is the next card higher (H) or Lower? (L)")
-            print("Your next card is... the " + p1game[p2seq+1][0] + " of "+ p2game[p2seq+1][1] +".")
+            print("Your next card is... the " + p2game[p2seq+1][0] + " of "+ p2game[p2seq+1][1] +".")
+            if ascii_on:
+                print(asciiCard(p2game[i+1]))
 
             #If the consecutive card is higher
             if p1game[p2seq][2] < game[p2seq+1][2]:
@@ -207,8 +221,12 @@ def endlessMode():
         for i in range(len(game)-1):
             if i == 0:
                 print("Your first card is... the " + game[i][0] + " of "+ game[i][1] +".")
+                if ascii_on:
+                    print(asciiCard(game[i]))
             answer = input("Is the next card higher (H) or Lower? (L)")
             print("Your next card is... the " + game[i+1][0] + " of "+ game[i+1][1] +".")
+            if ascii_on:
+                print(asciiCard(game[i+1]))
             #If the consecutive card is higher
             if game[i][2] < game[i+1][2]:
                 print("The card is higher!")
@@ -254,10 +272,21 @@ def leaderBoard():
             for row in scores:
                 print(f"{row[0]:<12} {row[1]:<6}")
 
+
+
+def asciiCard(card):
+    match card[1]:
+        case "Hearts":
+            return f"┌─────────┐\n│ {card[0][0]}       │\n│         │\n│    ♥    │\n│         │\n│       {card[0][0]} │\n└─────────┘"
+        case "Diamonds":
+            return f"┌─────────┐\n│ {card[0][0]}       │\n│         │\n│    ♦    │\n│         │\n│       {card[0][0]} │\n└─────────┘"
+        case "Spades":
+            return f"┌─────────┐\n│ {card[0][0]}       │\n│         │\n│    ♠    │\n│         │\n│       {card[0][0]} │\n└─────────┘"
+        case "Clubs":
+            return f"┌─────────┐\n│ {card[0][0]}       │\n│         │\n│    ♣    │\n│         │\n│       {card[0][0]} │\n└─────────┘"
+
 #The splashscreen is called, which sets the whole program in motion.
 splashScreen()
-
-
 
 
 
