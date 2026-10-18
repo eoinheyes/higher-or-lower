@@ -11,6 +11,7 @@ The user is given a card, and they must guess whether the next card in the rando
 - [ ] Endless Mode
 - [ ] High Scores
 - [ ] Leaderboard
+- [ ] ASCII Cards
 
 ## In Progress
 
@@ -19,7 +20,6 @@ The user is given a card, and they must guess whether the next card in the rando
 ## Planned Features
 
 - [ ] User guide
-- [ ] ASCII Cards
 
 ## ASCII Cards
 
